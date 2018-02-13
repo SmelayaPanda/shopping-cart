@@ -8,3 +8,5 @@
 ```
     npm install
 ```
+3. Add Bootstrap .css and .js from https://getbootstrap.com/
+4. Add jQuery
