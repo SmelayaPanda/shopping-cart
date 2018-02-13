@@ -1,0 +1,3 @@
+MongoDB
+1. Switch db
+    use <db_name>
