@@ -10,3 +10,10 @@
 ```
 3. Add Bootstrap .css and .js from https://getbootstrap.com/
 4. Add jQuery
+5. Install more featured version of Handlebars for express
+```
+    npm install --save express-handlebars
+```
+and setup new app engine - app.set('.hbs', expressHbs(...))
+6. Add https://use.fontawesome.com/
+
