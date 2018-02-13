@@ -1,3 +1,8 @@
 MongoDB
-1. Switch db
+
+0. Run
+    mongod
+1. Run
+    mongo
+3. Switch db
     use <db_name>

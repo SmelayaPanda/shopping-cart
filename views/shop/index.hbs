@@ -1,70 +1,22 @@
 <div class="row d-flex justify-content-center">
-    <div class="card col-md-3">
-        <img class="card-img-top"
-             src="images/1.jpg"
-             alt="Card image cap"
-        >
-        <div class="card-body">
-            <h5 class="card-title">Card title</h5>
-            <p class="card-text text-secondary">Some quick example text to build on the card title and make up the bulk
-                of
-                the card's
-                content.</p>
-            <div class="price pull-left">
-                875$
+    {{# each products}}
+        <div class="card col-md-3">
+            <img class="card-img-top"
+                 src="{{ this.imagePath }}"
+                 alt="Card image cap"
+            >
+            <div class="card-body">
+                <h5 class="card-title">
+                    {{ this.title }}
+                </h5>
+                <p class="card-text text-secondary">
+                    {{ this.description }}
+                </p>
+                <div class="price pull-left">
+                    ${{ this.price }}
+                </div>
+                <a href="#" class="btn btn-success pull-right">Buy</a>
             </div>
-            <a href="#" class="btn btn-success pull-right">Add to cart</a>
         </div>
-    </div>
-    <div class="card col-md-3">
-        <img class="card-img-top"
-             src="images/1.jpg"
-             alt="Card image cap"
-        >
-        <div class="card-body">
-            <h5 class="card-title">Card title</h5>
-            <p class="card-text text-secondary">Some quick example text to build on the card title and make up the bulk
-                of
-                the card's
-                content.</p>
-            <div class="price pull-left">
-                875$
-            </div>
-            <a href="#" class="btn btn-success pull-right">Add to cart</a>
-        </div>
-    </div>
-    <div class="card col-md-3" style="width: 18rem;">
-        <img class="card-img-top"
-             src="images/1.jpg"
-             alt="Card image cap"
-        >
-        <div class="card-body">
-            <h5 class="card-title">Card title</h5>
-            <p class="card-text text-secondary">Some quick example text to build on the card title and make up the bulk
-                of
-                the card's
-                content.</p>
-            <div class="price pull-left">
-                875$
-            </div>
-            <a href="#" class="btn btn-success pull-right">Add to cart</a>
-        </div>
-    </div>
-    <div class="card col-md-3" style="width: 18rem;">
-        <img class="card-img-top"
-             src="images/1.jpg"
-             alt="Card image cap"
-        >
-        <div class="card-body">
-            <h5 class="card-title">Card title</h5>
-            <p class="card-text text-secondary">Some quick example text to build on the card title and make up the bulk
-                of
-                the card's
-                content.</p>
-            <div class="price pull-left">
-                875$
-            </div>
-            <a href="#" class="btn btn-success pull-right">Add to cart</a>
-        </div>
-    </div>
+    {{/each}}
 </div>
