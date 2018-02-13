@@ -1,6 +1,9 @@
-.card img {
+.card {
+    margin: 10px;
 }
 
+.card img {
+}
 
 .price {
     font-size: 24px;
