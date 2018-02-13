@@ -16,4 +16,8 @@
 ```
 and setup new app engine - app.set('.hbs', expressHbs(...))
 6. Add https://use.fontawesome.com/
+7.
+```
+    npm install --save mongoose
+```
 

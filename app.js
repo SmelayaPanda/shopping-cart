@@ -5,6 +5,10 @@ var logger = require('morgan');
 var cookieParser = require('cookie-parser');
 var bodyParser = require('body-parser');
 let expressHbs = require('express-handlebars');
+let mongoose = require('mongoose');
+
+// DB with name "shopping" will be crated automatically if not exists
+mongoose.connect('localhost:27017/shopping');
 
 var index = require('./routes/index');
 
