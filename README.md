@@ -47,3 +47,7 @@ and setup new app engine - app.set('.hbs', expressHbs(...))
 ```
     npm install --save express-validator
 ```
+14. To save shopping goods some specified time in db
+```
+    npm install --save connect-mongo
+```

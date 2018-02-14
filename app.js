@@ -10,6 +10,7 @@ var express = require('express')
     , passport = require('passport')
     , flash = require('connect-flash')
     , validator = require('express-validator')
+    , MongoStore = require('connect-mongo')(session)
 ;
 
 // DB with name "shopping" will be crated automatically if not exists
@@ -37,7 +38,9 @@ app.use(session(
         secret: 'mySuperPuperSecret',
         resave: false,
         saveUninitialized: false,
-        cookie: {maxAge: 60000}
+        cookie: {maxAge: 60000},
+        store: new MongoStore({ mongooseConnection: mongoose.connection })
+        // store time to live - ttl: 14 * 24 * 60 * 60 // = 14 days. Default
     }));
 app.use(flash()); // flash used session
 app.use(passport.initialize());
@@ -46,6 +49,7 @@ app.use(express.static(path.join(__dirname, 'public')));
 
 app.use(function (req, res, next) {
     res.locals.login = req.isAuthenticated(); // ! create global variable 'login' which be able in every view!
+    res.locals.session = req.session;
     next();
 });
 
