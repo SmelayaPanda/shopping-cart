@@ -20,4 +20,13 @@ and setup new app engine - app.set('.hbs', expressHbs(...))
 ```
     npm install --save mongoose
 ```
+8. Install Node.js CSRF protection middleware
+(cookie tokens for HTTP session).
+```
+    npm install --save csurf
+```
+9. And for stay login in the system every new request in session (by saving token)
+```
+    npm install --save express-session
+```
 
