@@ -1,15 +1,19 @@
-var express = require('express');
-var path = require('path');
-var favicon = require('serve-favicon');
-var logger = require('morgan');
-var cookieParser = require('cookie-parser');
-var session = require('express-session');
-var bodyParser = require('body-parser');
-let expressHbs = require('express-handlebars');
-let mongoose = require('mongoose');
+var express = require('express')
+    , path = require('path')
+    , bodyParser = require('body-parser')
+    , cookieParser = require('cookie-parser')
+    , logger = require('morgan')
+    , favicon = require('serve-favicon')
+    , session = require('express-session')
+    , expressHbs = require('express-handlebars')
+    , mongoose = require('mongoose')
+    , passport = require('passport')
+    , flash = require('connect-flash');
 
 // DB with name "shopping" will be crated automatically if not exists
 mongoose.connect('mongodb://localhost:27017/shopping');
+// run all code in passport.js
+require('./config/passport');
 
 var index = require('./routes/index');
 
@@ -25,7 +29,16 @@ app.use(logger('dev'));
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({extended: false}));
 app.use(cookieParser());
-app.use(session({secret: 'mySuperPuperSecret', resave: false, saveUninitialized: false}));
+app.use(session(
+    {
+        secret: 'mySuperPuperSecret',
+        resave: false,
+        saveUninitialized: false,
+        cookie: {maxAge: 60000}
+    }));
+app.use(flash()); // flash used session
+app.use(passport.initialize());
+app.use(passport.session());
 app.use(express.static(path.join(__dirname, 'public')));
 
 app.use('/', index);

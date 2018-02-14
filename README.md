@@ -29,4 +29,17 @@ and setup new app engine - app.set('.hbs', expressHbs(...))
 ```
     npm install --save express-session
 ```
-
+10. To handle all user authentication and signup
+```
+    npm install --save passport
+    // choiced strategy
+    npm install --save passport-local
+```
+11. To encrypt password
+```
+    npm install --save bcrypt-nodejs
+```
+12. The flash is a special area of the session used for storing messages
+```
+    npm install --save connect-flash
+```

@@ -1,15 +1,21 @@
 <div class="row justify-content-center">
     <div class="col-md-4">
-        <h1 class="text-center">Sign up</h1>
-        Validation error will be here
+        <h1>Sign up</h1>
+        {{# if hasErrors }}
+            <div class="alert alert-danger">
+                {{# each messages }}
+                    <p class="mb-0">{{ this }}</p>
+                {{/each }}
+            </div>
+        {{/if}}
         <form action="/user/signup" method="post">
-            <div class="form-group text-center">
+            <div class="form-group">
                 <label for="email">
                     E-mail
                     <input type="text" id="email" name="email" class="form-control">
                 </label>
             </div>
-            <div class="form-group text-center">
+            <div class="form-group">
                 <label for="password">
                     Password
                     <input type="password" id="password" name="password" class="form-control">
@@ -17,10 +23,9 @@
             </div>
             <!--This row give us token protection of every new session-->
             <input type="hidden" name="_csrf" value="{{ csrfToken }}">
-            <div class="text-center">
+            <div>
                 <button type="submit" class="btn btn-primary">Sign up</button>
             </div>
         </form>
-        {{ csrfToken }}
     </div>
 </div>
