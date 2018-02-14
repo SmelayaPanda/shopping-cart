@@ -22,6 +22,19 @@ passport.use('local.signup',
         passwordField: 'password',
         passReqToCallback: true
     }, function (req, email, password, done) {
+        // Validation
+        req.checkBody('email', 'Invalid email').notEmpty().isEmail();
+        req.checkBody('password', 'Invalid password').notEmpty().isLength({min: 4});
+        var errors = req.validationErrors();
+        if (errors) {
+            var messages = [];
+            errors.forEach(function (error) {
+                messages.push(error.msg); // msg it is a field of express-validation error
+            });
+            // 1- error, 2 - successful, 3 - error message
+            return done(null, false, req.flash('error', messages));
+        }
+        // Add to db
         User.findOne({'email': email}, function (err, user) {
             if (err) {
                 return done(err)

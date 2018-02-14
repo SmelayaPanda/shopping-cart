@@ -8,7 +8,9 @@ var express = require('express')
     , expressHbs = require('express-handlebars')
     , mongoose = require('mongoose')
     , passport = require('passport')
-    , flash = require('connect-flash');
+    , flash = require('connect-flash')
+    , validator = require('express-validator')
+;
 
 // DB with name "shopping" will be crated automatically if not exists
 mongoose.connect('mongodb://localhost:27017/shopping');
@@ -28,6 +30,7 @@ app.set('view engine', '.hbs');
 app.use(logger('dev'));
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({extended: false}));
+app.use(validator());
 app.use(cookieParser());
 app.use(session(
     {

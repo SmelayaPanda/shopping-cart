@@ -43,3 +43,7 @@ and setup new app engine - app.set('.hbs', expressHbs(...))
 ```
     npm install --save connect-flash
 ```
+13. For validate input fields
+```
+    npm install --save express-validator
+```
