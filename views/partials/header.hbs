@@ -1,5 +1,5 @@
 <nav class="navbar navbar-expand-lg navbar-light bg-light">
-    <a class="navbar-brand col-4" href="#">
+    <a class="navbar-brand col-4" href="/">
         Store
     </a>
     <button class="navbar-toggler"
@@ -44,17 +44,22 @@
                 </a>
                 <div class="dropdown-menu"
                      aria-labelledby="navbarDropdown">
-                    <a class="dropdown-item" href="#">
-                        User account
-                    </a>
-                    <a class="dropdown-item" href="#">
-                        Logout
-                    </a>
-                    <div class="dropdown-divider">
-                    </div>
-                    <a class="dropdown-item" href="#">
-                        Something else here
-                    </a>
+                    {{# if login }}
+                        <a class="dropdown-item" href="/user/profile">
+                            User account
+                        </a>
+                        <div class="dropdown-divider"></div>
+                        <a class="dropdown-item" href="/user/logout">
+                            Logout
+                        </a>
+                    {{ else }}
+                        <a class="dropdown-item" href="/user/signup">
+                            Sign up
+                        </a>
+                        <a class="dropdown-item" href="/user/signin">
+                            Sign in
+                        </a>
+                    {{/if}}
                 </div>
             </li>
         </ul>

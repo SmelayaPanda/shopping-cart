@@ -18,7 +18,7 @@ mongoose.connect('mongodb://localhost:27017/shopping');
 require('./config/passport');
 
 var index = require('./routes/index');
-
+var userRoutes = require('./routes/user');
 var app = express();
 
 // view engine setup
@@ -44,6 +44,12 @@ app.use(passport.initialize());
 app.use(passport.session());
 app.use(express.static(path.join(__dirname, 'public')));
 
+app.use(function (req, res, next) {
+    res.locals.login = req.isAuthenticated(); // ! create global variable 'login' which be able in every view!
+    next();
+});
+
+app.use('/user', userRoutes); // if you put this after app.use('/', index); -all user request will be send to '/'
 app.use('/', index);
 
 // catch 404 and forward to error handler
