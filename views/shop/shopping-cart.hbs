@@ -1,0 +1,50 @@
+{{#if products }}
+    <div class="row mt-3">
+        <div class="col-sm-6 col-md-6 offset-sm-3 offset-md-3">
+            <ul class="list-group">
+                {{# each products }}
+                    <li class="list-group-item">
+                        <strong>{{ this.item.title }}</strong>
+                        <span class="badge badge-success">${{ this.price }}</span>
+                        <!-- Example split danger button -->
+                        <span class="dropdown show ml-2">
+                            <a class="btn btn-primary btn-sm dropdown-toggle"
+                               href="#"
+                               role="button"
+                               id="dropdownMenuLink"
+                               data-toggle="dropdown"
+                               aria-haspopup="true"
+                               aria-expanded="false">
+                                Action
+                            </a>
+                            <div class="dropdown-menu" aria-labelledby="dropdownMenuLink">
+                                <a class="dropdown-item" href="#">Increase by 1</a>
+                                <a class="dropdown-item" href="#">Remove all</a>
+                            </div>
+                        </span>
+                        <span class="badge badge-success pull-right">{{ this.qty }}</span>
+                    </li>
+                {{/each}}
+            </ul>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-sm-6 col-md-6 offset-sm-3 offset-md-3">
+            <strong>Total: {{ totalPrice }}</strong>
+        </div>
+    </div>
+    <hr>
+    <div class="row">
+        <div class="col-sm-6 col-md-6 offset-sm-3 offset-md-3">
+            <button type="button" class="btn btn-success">
+                Checkout
+            </button>
+        </div>
+    </div>
+{{ else }}
+    <div class="row">
+        <div class="col-sm-6 col-md-6 offset-sm-3 offset-md-3">
+            <h2>No items in cart</h2>
+        </div>
+    </div>
+{{/if}}

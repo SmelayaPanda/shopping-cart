@@ -27,10 +27,16 @@
          id="navbarSupportedContent">
         <ul class="navbar-nav">
             <li class="nav-item active">
-                <a class="nav-link" href="#">
+                <a class="nav-link" href="/shopping-cart/">
                     <i class="fas fa-shopping-cart"></i>
                     Shopping cart
-                    <span class="sr-only">(current)</span></a>
+                    <span class="sr-only">(current)</span>
+                    {{#if session.cart.totalQty }}
+                        <span class="badge badge-secondary">
+                            {{ session.cart.totalQty }}
+                        </span>
+                    {{/if}}
+                </a>
             </li>
             <li class="nav-item dropdown">
                 <a class="nav-link dropdown-toggle"
