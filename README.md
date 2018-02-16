@@ -51,3 +51,5 @@ and setup new app engine - app.set('.hbs', expressHbs(...))
 ```
     npm install --save connect-mongo
 ```
+15. For payment card validation and pay with card
+ https://stripe.com/ (Payment Request API.)

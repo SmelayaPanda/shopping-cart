@@ -2,6 +2,9 @@
     <div class="row mt-3">
         <div class="col-sm-6 col-md-6 offset-sm-3 offset-md-3">
             <ul class="list-group">
+                <div id="charge-error" class="alert alert-danger {{#if noError}}hidden{{/if}}">
+                    {{errMsg}}
+                </div>
                 {{# each products }}
                     <li class="list-group-item">
                         <strong>{{ this.item.title }}</strong>
@@ -30,15 +33,25 @@
     </div>
     <div class="row">
         <div class="col-sm-6 col-md-6 offset-sm-3 offset-md-3">
-            <strong>Total: {{ totalPrice }}</strong>
-        </div>
-    </div>
-    <hr>
-    <div class="row">
-        <div class="col-sm-6 col-md-6 offset-sm-3 offset-md-3">
-            <button type="button" class="btn btn-success">
-                Checkout
-            </button>
+            <strong class="pt-2">Your Total: ${{ totalPrice }}</strong>
+            <form action="/charge" method="post" class="mt-3">
+                <script
+                        src="https://checkout.stripe.com/checkout.js"
+                        class="stripe-button"
+                        data-image="http://www.clker.com/cliparts/w/0/q/Y/P/5/shopping-cart-hi.png"
+                        data-key="pk_test_6nG8xWFBDtMtcqidY3ehUTFy"
+                        data-name="WashMachine-Store Demo"
+                        data-description="3 widgets (${{ totalPrice }})"
+                        data-amount="{{ totalPrice }}00"
+                        data-billing-address="true"
+                >
+                </script>
+                <script>
+                    // Hide default stripe button
+                    document.getElementsByClassName("stripe-button-el")[0].style.display = 'none';
+                </script>
+                <button type="submit" class="btn btn-success">Buy my things</button>
+            </form>
         </div>
     </div>
 {{ else }}

@@ -3,10 +3,29 @@ var express = require('express')
     , csrf = require('csurf')
     , csrfProtection = csrf()
     , Cart = require('../models/cart')
+    , stripe = require("stripe")("sk_test_q4FzqlpzhmmVlEN6Wq0aYQAI");
 ;
-router.use(csrfProtection);
 
 var Product = require('../models/product');
+
+router.post('/charge', function (req, res, next) {
+    console.log(req.body.stripeToken);
+    var token = req.body.stripeToken; // Using Express
+    var cart = new Cart(req.session.cart);
+// Charge the user's card:
+    stripe.charges.create({
+        amount: cart.totalPrice,
+        currency: "usd",
+        description: "Example charge",
+        statement_descriptor: "Custom descriptor",
+        source: token
+    }, function(err, charge) {
+        // asynchronously called
+    });
+    res.redirect('/')
+});
+
+router.use(csrfProtection);
 
 /* GET home page. */
 router.get('/', function (req, res, next) {
@@ -33,10 +52,9 @@ router.get('/add-to-cart/:id', function (req, res, next) {
     });
 });
 
-router.get('/shopping-cart/', function (req, res, next) {
-    console.log(req.session);
+router.get('/shopping-cart', function (req, res, next) {
     if (!req.session.cart) {
-        res.render('shop/shopping-cart', {products: null})
+        return res.render('shop/shopping-cart', {products: null})
     }
     var cart = new Cart(req.session.cart);
     res.render('shop/shopping-cart',
