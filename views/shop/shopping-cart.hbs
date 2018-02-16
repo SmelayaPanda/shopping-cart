@@ -34,6 +34,8 @@
     <div class="row">
         <div class="col-sm-6 col-md-6 offset-sm-3 offset-md-3">
             <strong class="pt-2">Your Total: ${{ totalPrice }}</strong>
+
+            <!--Stripe-->
             <form action="/charge" method="post" class="mt-3">
                 <script
                         src="https://checkout.stripe.com/checkout.js"
@@ -51,6 +53,40 @@
                     document.getElementsByClassName("stripe-button-el")[0].style.display = 'none';
                 </script>
                 <button type="submit" class="btn btn-success">Buy my things</button>
+            </form>
+
+            <!-- PAY PAL -->
+            <form action="/paypal" method="post">
+                <button type="submit" class="mt-2 btn btn-primary">Buy with PayPal</button>
+            </form>
+
+            <!--Yandex-->
+            <form method="POST" action="https://money.yandex.ru/quickpay/confirm.xml">
+                <input type="hidden"
+                       name="receiver"
+                       value="410012676806757">
+                <input type="hidden" name="formcomment"
+                       value="Проект «Железный человек»: реактор холодного ядерного синтеза">
+                <input type="hidden"
+                       name="short-dest"
+                       value="Проект «Железный человек»: реактор холодного ядерного синтеза">
+                <input type="hidden" name="label" value="$order_id">
+                <input type="hidden" name="quickpay-form"
+                       value="donate">
+                <input type="hidden"
+                       name="targets"
+                       value="транзакция {order_id}">
+                <input type="hidden" name="sum" value="4568.25" data-type="number">
+                <input type="hidden" name="comment"
+                       value="Хотелось бы получить дистанционное управление.">
+                <input type="hidden" name="need-fio" value="true">
+                <input type="hidden" name="need-email" value="true">
+                <input type="hidden" name="need-phone" value="false">
+                <input type="hidden" name="need-address"
+                       value="false">
+                <button type="submit" class="mt-2 btn btn-secondary"
+                        name="paymentType"
+                        value="AC">Buy with Yandex</button>
             </form>
         </div>
     </div>

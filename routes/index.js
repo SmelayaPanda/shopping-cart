@@ -19,7 +19,7 @@ router.post('/charge', function (req, res, next) {
         description: "Example charge",
         statement_descriptor: "Custom descriptor",
         source: token
-    }, function(err, charge) {
+    }, function (err, charge) {
         // asynchronously called
     });
     res.redirect('/')
