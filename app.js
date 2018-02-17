@@ -38,8 +38,8 @@ app.use(session(
         secret: 'mySuperPuperSecret',
         resave: false,
         saveUninitialized: false,
-        cookie: {maxAge: 14 * 24 * 60 * 60 * 1000 },
-        store: new MongoStore({ mongooseConnection: mongoose.connection })
+        cookie: {maxAge: 14 * 24 * 60 * 60 * 1000},
+        store: new MongoStore({mongooseConnection: mongoose.connection})
         // store time to live - ttl: 14 * 24 * 60 * 60 // = 14 days. Default
     }));
 app.use(flash()); // flash used session

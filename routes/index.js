@@ -6,6 +6,7 @@ var express = require('express')
     , stripe = require("stripe")("sk_test_q4FzqlpzhmmVlEN6Wq0aYQAI");
 ;
 
+
 const paypal = require('paypal-rest-sdk');
 paypal.configure({
     'mode': 'sandbox', //sandbox or live
