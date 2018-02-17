@@ -52,7 +52,7 @@
                     // Hide default stripe button
                     document.getElementsByClassName("stripe-button-el")[0].style.display = 'none';
                 </script>
-                <button type="submit" class="btn btn-success">Buy my things</button>
+                <button type="submit" class="btn btn-success">Buy With Stripe</button>
             </form>
 
             <!-- PAY PAL -->
@@ -86,8 +86,85 @@
                        value="false">
                 <button type="submit" class="mt-2 btn btn-secondary"
                         name="paymentType"
-                        value="AC">Buy with Yandex</button>
+                        value="AC">Buy with Yandex
+                </button>
             </form>
+
+
+            <script src="https://www.paypalobjects.com/api/checkout.js"></script>
+
+            <div id="paypal-button-container" class="mt-3"></div>
+
+            <script>
+
+                // Render the PayPal button
+
+                paypal.Button.render({
+
+                    // Set your environment
+
+                    env: 'sandbox', // sandbox | production
+
+                    locale: 'ru_RU',
+                    // Specify the style of the button
+
+                    style: {
+                        layout: 'vertical',  // horizontal | vertical
+                        size: 'medium',    // medium | large | responsive
+                        shape: 'rect',      // pill | rect
+                        color: 'blue'       // gold | blue | silver | black
+                    },
+
+
+                    // Specify allowed and disallowed funding sources
+                    //
+                    // Options:
+                    // - paypal.FUNDING.CARD
+                    // - paypal.FUNDING.CREDIT
+                    // - paypal.FUNDING.ELV
+
+                    funding: {
+                        allowed: [paypal.FUNDING.CARD],
+                        disallowed: []
+                    },
+
+                    // PayPal Client IDs - replace with your own
+                    // Create a PayPal app: https://developer.paypal.com/developer/applications/create
+
+                    client: {
+                        sandbox: 'AZDxjDScFpQtjWTOUtWKbyN_bDt4OgqaF4eYXlewfBP4-8aqX3PiV8e1GWU6liB2CUXlkA59kJXE7M6R',
+                        production: '<insert production client id>'
+                    },
+
+                    payment: function (data, actions) {
+                        return actions.payment.create({
+                            payment: {
+                                transactions: [
+                                    {
+                                        amount: {total: '0.01', currency: 'USD'}
+                                    }
+                                ]
+                            }
+                        });
+                    },
+
+                    onAuthorize: function (data, actions) {
+                        return actions.payment.execute().then(function () {
+                            window.alert('Payment Complete!');
+                            console.log(data);
+                        });
+                    }
+
+                }, '#paypal-button-container');
+
+            </script>
+            <!--https://www.sandbox.paypal.com/webapps/xoonboarding-->
+            <!--?version=4&locale.x=en_US&fundingSource=card&-->
+            <!--sessionID=d1c903924a_ga3tunjuhi2ta&-->
+            <!--buttonSessionID=27a614ad9d_ga3tunjvhi2tm&env=sandbox&-->
+            <!--logLevel=warn&uid=7be17af9b9&token=PAY-67L9749209298183FLKD6AEI&-->
+            <!--xcomponent=1#-->
+            <!--/checkout/multistepsignup/multistepsignupaddcard-->
         </div>
     </div>
 {{ else }}
@@ -97,3 +174,5 @@
         </div>
     </div>
 {{/if}}
+
+<script src="https://static.yandex.net/checkout/js/v1/"></script>
