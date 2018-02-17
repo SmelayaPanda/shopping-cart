@@ -196,7 +196,33 @@
             $('#checkoutCloud').click(pay);
         </script>
 
-
+        <form action="https://money.yandex.ru/eshop.xml" method="post">
+            <input name="shopId" value="410012676806757" type="hidden"/>
+            <input name="scid" value="4321" type="hidden"/>
+            <input name="sum" value="100.50" type="hidden">
+            <input name="customerNumber" value="abc000" type="hidden"/>
+            <input name="paymentType" value="AC" type="hidden"/>
+            <input name="orderNumber" value="abc1111111" type="hidden"/>
+            <input name="cps_phone" value="79110000000" type="hidden"/>
+            <input name="cps_email" value="user@domain.com" type="hidden"/>
+            <input type="submit" value="Заплатить"/>
+        </form>
+        <form action="https://money.yandex.ru/eshop.xml" method="post">
+            <input name="shopId" value="1234" type="hidden"/>
+            <input name="scid" value="4321" type="hidden"/>
+            <input name="sum" value="100.50" type="hidden">
+            <input name="customerNumber" value="abc000" type="hidden"/>
+            <input name="shopArticleId" value="567890" type="hidden"/>
+            <input name="paymentType" value="AC" type="hidden"/>
+            <input name="orderNumber" value="abc1111111" type="hidden"/>
+            <input type="text" name="cps_email" value="user@domain.com">
+            <input type="text" name="cps_phone" value="79009009090">
+            <input name="custName" value="Иванов Петр Сидорович" type="hidden"/>
+            <input name="custEmail" value="user@domain.com" type="hidden"/>
+            <input name="custAddr" value="Москва, а/я 100" type="hidden"/>
+            <input name="orderDetails" value="Счастье для всех. В пакетиках, россыпью." type="hidden"/>
+            <input type="submit" value="Заплатить"/>
+        </form>
 
     </div>
 {{ else }}
